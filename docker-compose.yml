@@ -1,0 +1,29 @@
+services:
+  db:
+    image: postgres:16
+    volumes:
+      - ./tmp/db:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+  web:
+    depends_on:
+      - db
+    build:
+      context: .
+      args:
+        - RUBY_VERSION=${RUBY_VERSION:-3.4.7}
+    image: rails_app-web:latest
+    pull_policy: never
+    command: bin/dev
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+  selenium:
+    image: selenium/standalone-chrome:latest
+    platform: linux/amd64
+    ports:
+      - "4444:4444"
+  

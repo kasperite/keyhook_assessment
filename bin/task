@@ -1,0 +1,14 @@
+#!/bin/bash
+
+if [ "$1" == "spec" ]; then
+    exec docker compose exec web bundle exec rspec
+elif [ "$1" == "migrate" ]; then
+    exec docker compose exec web bundle exec rails db:migrate
+elif [ "$1" == "rollback" ]; then
+    exec docker compose exec web bundle exec rails db:rollback
+else
+    echo "Error: Unknown command '$1'. Supported commands are 'spec', 'migrate', and 'rollback'."
+    exit 1
+fi
+
+

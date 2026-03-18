@@ -15,6 +15,7 @@ gem "dartsass-rails", "~> 0.5.1"
 gem "bootstrap", "~> 5.3"
 gem "pg"
 gem "bcrypt", "~> 3.1"
+gem "simple_calendar"
 
 group :test do
   gem "capybara"

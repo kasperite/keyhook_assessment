@@ -25,4 +25,5 @@ end
 
 group :development, :test do
   gem "factory_bot_rails"
+  gem "dotenv"
 end

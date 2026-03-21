@@ -17,6 +17,9 @@ gem "pg"
 gem "bcrypt", "~> 3.1"
 gem "simple_calendar"
 
+gem "pry"
+gem "pry-byebug"
+
 group :test do
   gem "capybara"
   gem "selenium-webdriver"

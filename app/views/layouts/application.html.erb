@@ -26,6 +26,7 @@
   <body>
     <div class="d-flex justify-content-center align-items-center vh-100">
       <div class="p-4 border bg-light w-75">
+        <%= turbo_frame_tag "modal" %>
         <%= yield %>
       </div>
     </div>

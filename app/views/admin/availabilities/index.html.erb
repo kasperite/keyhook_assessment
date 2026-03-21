@@ -1,0 +1,22 @@
+<%= render "shared/modal", title: params[:date], fade_in: true do %>
+  <div class="container">
+    <div class="row">
+      <div class="col-6">
+        <h1>Availabilities</h1>
+        <div class="mb-3">
+          <% @availabilities.each do |availability| %>
+            <span class="badge rounded-pill <%= availability.available? ? 'bg-primary' : 'bg-secondary' %>">
+              <%= availability.start_time.strftime("%H:%M") %> - <%= availability.end_time.strftime("%H:%M") %>
+            </span>
+          <% end %>
+        </div>
+        <% unless @date < Date.current %>
+          <p><%= link_to "Add", "#", class: "btn btn-sm btn-primary" %></p>
+        <% end %>
+      </div>
+      <div class="col-6">
+        <h1>Bookings</h1>
+      </div>
+    </div>
+  </div>
+<% end %>

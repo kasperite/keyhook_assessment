@@ -1,0 +1,5 @@
+<li>
+  <span class="badge rounded-pill <%= availability.available? ? 'bg-primary' : 'bg-secondary' %>">
+    <%= availability.start_time.strftime("%H:%M") %> - <%= availability.end_time.strftime("%H:%M") %>
+  </span>
+</li>

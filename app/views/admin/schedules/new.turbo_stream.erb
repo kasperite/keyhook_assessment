@@ -1,0 +1,3 @@
+<%= turbo_stream.update 'new_availability' do %>
+  <%= render 'form', date: params[:date] || @schedule.start_time.to_date %>
+<% end %>

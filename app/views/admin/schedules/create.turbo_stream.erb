@@ -1,0 +1,11 @@
+<%= turbo_stream.update 'new_availability' do %>
+  <%= link_to "Add",  new_admin_user_schedule_path(Current.user, date: @schedule.start_time.to_date), class: "btn btn-sm btn-primary", data: { turbo_stream: true } %>
+<% end %>
+
+<%= turbo_stream.append 'availabilities' do %>
+  <%= render @availability %>
+<% end %>
+
+<%= turbo_stream.replace "date_#{@schedule.start_time.to_date.to_time.to_i}" do %>
+  <%= link_to @schedule.start_time.to_date.day, admin_user_availabilities_path(Current.user, date: @schedule.start_time.to_date), data: { turbo_frame: "modal" }, class: "btn btn-sm btn-primary position-relative" %>
+<% end %>

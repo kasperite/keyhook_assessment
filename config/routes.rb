@@ -4,7 +4,8 @@ Rails.application.routes.draw do
   namespace :admin do
     get "/" => "dashboard#index", as: :dashboard
     resources :users do
-      resources :availabilities, only: %i[index new create destroy]
+      resources :availabilities, only: %i[index]
+      resources :schedules, only: %i[new create]
     end
   end
   

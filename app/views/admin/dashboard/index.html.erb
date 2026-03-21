@@ -1,5 +1,7 @@
 <h1>Calendar</h1>
 <p><%= button_to "Sign Out", session_path, method: :delete, class: "btn btn-danger" %></p>
 <%= month_calendar(events: @availabilities) do |date, availabilities| %>
-  <%= link_to date.day, admin_user_availabilities_path(Current.user, date: date), data: { turbo_frame: "modal" }, class: "btn btn-sm #{availabilities.any? ? 'btn-primary' : 'btn-outline-secondary'} position-relative" %>
+  <%= turbo_frame_tag "date_#{date.to_time.to_i}" do %>
+    <%= link_to date.day, admin_user_availabilities_path(Current.user, date: date), data: { turbo_frame: "modal" }, class: "btn btn-sm #{availabilities.any? ? 'btn-primary' : 'btn-outline-secondary'} position-relative" %>
+  <% end %>
 <% end %>

@@ -1,0 +1,16 @@
+<%= form_with model: @schedule, scope: :schedule, url: admin_user_schedules_path(Current.user) do |form| %>
+  <% if @schedule.errors.any? %>
+    <p class="text-danger">
+      <%= @schedule.errors.full_messages.to_sentence.capitalize %>
+    </p>
+  <% end %>
+  <div class="d-flex mb-3">
+    <%= form.time_select :start_time, combined: true, minute_interval: 15, time_separator: "", class: "form-control-sm" %> &nbsp;
+    <%= form.number_field :duration, step: 10,class: "form-control-sm", placeholder: "Duration in minutes" %>
+    <div class="d-none">
+      <%= form.date_select :start_time, selected: date.to_date %>
+    </div>
+  </div>
+  <%= form.submit "Save", class: "btn btn-sm btn-primary" %>
+  <%= link_to "Cancel", admin_user_availabilities_path(Current.user, date: date), class: "btn btn-sm btn-primary", data: { turbo_frame: "new_availability" } %>
+<% end %>

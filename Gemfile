@@ -16,6 +16,7 @@ gem "bootstrap", "~> 5.3"
 gem "pg"
 gem "bcrypt", "~> 3.1"
 gem "simple_calendar"
+gem "combined_time_select"
 
 gem "pry"
 gem "pry-byebug"

@@ -6,10 +6,6 @@ class Availability < ApplicationRecord
   validates_presence_of :start_time, :end_time, :status
   validate :end_time_after_start_time
 
-  def duration
-    ((end_time - start_time) / 60).to_i
-  end
-
   private
 
   def end_time_after_start_time

@@ -1,21 +1,21 @@
-<%= render "shared/modal", title: params[:date], fade_in: true do %>
+<%= render "shared/modal", title: @date.strftime("%d/%m/%Y"), fade_in: true do %>
   <div class="container">
     <div class="row">
       <div class="col-6">
-        <h1>Availabilities</h1>
-        <div class="mb-3">
-          <% @availabilities.each do |availability| %>
-            <span class="badge rounded-pill <%= availability.available? ? 'bg-primary' : 'bg-secondary' %>">
-              <%= availability.start_time.strftime("%H:%M") %> - <%= availability.end_time.strftime("%H:%M") %>
-            </span>
-          <% end %>
-        </div>
-        <% unless @date < Date.current %>
-          <p><%= link_to "Add", "#", class: "btn btn-sm btn-primary" %></p>
-        <% end %>
+        <h2>Appointments</h2>
       </div>
       <div class="col-6">
-        <h1>Bookings</h1>
+        <h2>Availabilities</h2>
+        <div class="mb-3">
+          <ul id="availabilities" class="list-unstyled">
+            <%= render @availabilities %>
+          </ul>
+        </div>
+        <% unless @date < Date.current %>
+          <%= turbo_frame_tag 'new_availability' do %>
+            <%= link_to "Add", new_admin_user_schedule_path(Current.user, date: @date), class: "btn btn-sm btn-primary", data: { turbo_stream: true } %>
+          <% end %>
+        <% end %>
       </div>
     </div>
   </div>

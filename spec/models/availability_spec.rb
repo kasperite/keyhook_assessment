@@ -7,11 +7,7 @@ RSpec.describe Availability, type: :model do
   let(:status) { :available }
 
   subject { FactoryBot.build(:availability, start_time:, end_time:, status:) }
-
-  it 'calculates duration in minutes' do
-    expect(subject.duration).to eq(60)
-  end
-
+  
   it 'is valid with valid attributes' do
     expect(subject).to be_valid
   end

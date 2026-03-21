@@ -3,10 +3,14 @@
 <%= tag.div(flash[:notice], style: "color:green") if flash[:notice] %>
 
 <%= form_with url: session_path do |form| %>
-  <%= form.label :email_address, "Email address", class: "form-label" %><br>
-  <%= form.email_field :email_address, class: "form-control", required: true, autofocus: true, autocomplete: "username", placeholder: "Enter your email address", value: params[:email_address] %><br>
-  <%= form.label :password, "Password", class: "form-label" %><br>
-  <%= form.password_field :password, class: "form-control", required: true, autocomplete: "current-password", placeholder: "Enter your password", maxlength: 72 %><br>
+<div class="form-floating mb-3">
+  <%= form.email_field :email_address, class: "form-control", required: true, autofocus: true, autocomplete: "username", placeholder: "Enter your email address", value: params[:email_address] %>
+  <%= form.label :email_address, "Email address", class: "form-label" %>
+</div>
+<div class="form-floating mb-3">
+  <%= form.password_field :password, class: "form-control", required: true, autocomplete: "current-password", placeholder: "Enter your password", maxlength: 72 %>
+  <%= form.label :password, "Password", class: "form-label" %>
+</div>
   <%= form.submit "Sign in", class: "btn btn-primary" %>
 <% end %>
 <br>

@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :availability do
-    start_time { "2026-03-18 19:32:36" }
-    end_time { "2026-03-18 19:32:36" }
+    start_time { DateTime.now }
+    end_time { DateTime.now + 1.hour }
     status { :available }
     association :user
   end

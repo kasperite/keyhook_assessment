@@ -6,7 +6,7 @@ RSpec.describe Availability, type: :model do
   let(:end_time) { initial_time + 1.hour }
   let(:status) { :available }
 
-  subject { FactoryBot.build(:availability, start_time:, end_time:, status:) }
+  subject { build(:availability, start_time:, end_time:, status:) }
   
   it 'is valid with valid attributes' do
     expect(subject).to be_valid

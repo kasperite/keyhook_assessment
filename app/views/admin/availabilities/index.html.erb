@@ -2,11 +2,21 @@
   <div class="container">
     <div class="row">
       <div class="col-6">
-        <h2>Appointments</h2>
+        <h2>Confirmed</h2>
+        <div class="mb-3">
+          <ul id="appointments" class="list-unstyled">
+            <% if @appointments.empty? %>
+              <p>No confirmed appointments.</p>
+            <% end %>
+            <% @appointments.each do |appointment| %>
+              <%= render "appointment", appointment: appointment, date: @date %>
+            <% end %>
+          </ul>
+        </div>
       </div>
       <div class="col-6">
         <h2>Availabilities</h2>
-        <div class="mb-3">
+        <div>
           <ul id="availabilities" class="list-unstyled">
             <%= render @availabilities %>
           </ul>

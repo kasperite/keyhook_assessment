@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_03_18_063236) do
+ActiveRecord::Schema[8.1].define(version: 2026_03_21_182801) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -23,6 +23,20 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_18_063236) do
     t.bigint "user_id", null: false
     t.index ["user_id", "start_time", "end_time"], name: "index_availabilities_on_user_id_and_start_time_and_end_time", unique: true
     t.index ["user_id"], name: "index_availabilities_on_user_id"
+  end
+
+  create_table "bookings", force: :cascade do |t|
+    t.bigint "availability_id", null: false
+    t.datetime "created_at", null: false
+    t.string "email", null: false
+    t.string "first_name", null: false
+    t.string "last_name", null: false
+    t.text "message"
+    t.string "mobile", null: false
+    t.boolean "over_eighteen", default: false, null: false
+    t.boolean "sms_reminder", default: false
+    t.datetime "updated_at", null: false
+    t.index ["availability_id"], name: "index_bookings_on_availability_id", unique: true
   end
 
   create_table "sessions", force: :cascade do |t|
@@ -43,5 +57,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_18_063236) do
   end
 
   add_foreign_key "availabilities", "users"
+  add_foreign_key "bookings", "availabilities"
   add_foreign_key "sessions", "users"
 end

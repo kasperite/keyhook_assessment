@@ -6,8 +6,11 @@ Rails.application.routes.draw do
     resources :users do
       resources :availabilities, only: %i[index]
       resources :schedules, only: %i[new create]
+      resources :bookings, only: %i[show]
     end
   end
+
+  resource :bookings, only: %i[new create]
   
   resource :session
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

@@ -1,11 +1,16 @@
 class Availability < ApplicationRecord
   belongs_to :user
+  has_one :booking, dependent: :destroy
 
   enum :status, [:available, :booked], default: :available
 
   validates_presence_of :start_time, :end_time, :status
   validate :end_time_after_start_time
 
+  def display_for_tenant
+    "#{start_time.strftime("%B %d, %Y %H:%M")} - #{end_time.strftime("%H:%M")}"
+  end
+  
   private
 
   def end_time_after_start_time

@@ -1,0 +1,56 @@
+<%= form_with model: @booking, url: bookings_path, data: { turbo: "false" } do |f| %>
+  <% if @booking.errors.any? %>
+    <p class="text-danger">
+      <%= @booking.errors.full_messages.to_sentence.capitalize %>
+    </p>
+  <% end %>
+  <% if @availabilities.blank? %>
+    <p class="text-danger">There are no booking times currently available.</p>
+  <% end %>
+  <div class="mb-3">
+    <%= f.select(:availability_id, options_from_collection_for_select(@availabilities, :id, :display_for_tenant), { prompt: "Select a time for viewing" }, class: "form-select", required: true) %>
+  </div>
+
+  <div class="form-floating mb-3">
+    <%= f.text_field :first_name, class: "form-control", required: true %>
+    <%= f.label :first_name %>
+  </div>
+
+  <div class="form-floating mb-3">
+    <%= f.text_field :last_name, class: "form-control", required: true %>
+    <%= f.label :last_name %>
+  </div>
+
+  <div class="form-floating mb-3">
+    <%= f.telephone_field :mobile, class: "form-control", required: true %>
+    <%= f.label :mobile %>
+  </div>
+
+  <div class="form-floating mb-3">
+    <%= f.email_field :email, class: "form-control", required: true %>
+    <%= f.label :email %>
+  </div>
+
+  <div class="form-floating mb-3">
+    <%= f.text_area :message, class: "form-control h-100", rows: 5 %>
+    <%= f.label :message %>
+  </div>
+
+  <div class="mb-3">
+    <p>Are you over 18 years old?</p>
+    <%= f.collection_radio_buttons :over_eighteen, [[true, 'Yes'], [false, 'No']], :first, :last, class: "form-check-input" do |b| %>
+      <div class="form-check form-check-inline">
+        <%= b.label class: "form-check-label" %>
+        <%= b.radio_button class: "form-check-input" %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="form-check mb-3">
+    <%= f.check_box :sms_reminder, class: "form-check-input" %>
+    <%= f.label :sms_reminder, "Would you like to receive SMS reminders?", class: "form-check-label" %>
+  </div>
+
+  <%= f.submit "Create", class: "btn btn-primary" %>
+  <%= link_to "Back", root_path, class: "btn btn-secondary" %>
+<% end %>

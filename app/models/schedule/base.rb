@@ -21,14 +21,12 @@ module Schedule
       raise NotImplementedError, "Subclasses must implement the create method"
     end
 
-    private
-
     def within_operation_hours
       return if start_time.nil? || duration.nil?
       end_time = start_time + duration.minutes
 
       unless OPERATION_HOURS.cover?(start_time.strftime("%H:%M")) && OPERATION_HOURS.cover?(end_time.strftime("%H:%M"))
-        errors.add(:base, "Booking must be within operation hours (9:00 AM to 5:00 PM)")
+        errors.add(:base, "All bookings must be within operation hours (9:00 AM to 5:00 PM)")
       end
     end
   end

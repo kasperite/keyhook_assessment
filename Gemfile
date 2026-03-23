@@ -17,6 +17,7 @@ gem "pg"
 gem "bcrypt", "~> 3.1"
 gem "simple_calendar"
 gem "combined_time_select"
+gem "groupdate"
 
 gem "pry"
 gem "pry-byebug"

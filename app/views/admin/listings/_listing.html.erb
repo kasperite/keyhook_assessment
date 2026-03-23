@@ -9,5 +9,6 @@
       <p class="badge bg-success"><%= pluralize(bookings.count, "upcoming booking") %></p><br/>
     <% end %>
     <%= link_to "View Calendar", calendar_admin_listing_path(listing), class: "btn btn-sm btn-primary" %>
+    <%= link_to "View Bookings", admin_listing_bookings_path(listing), class: "btn btn-sm btn-primary" %>
   </div>
 </div>

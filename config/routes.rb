@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     resources :listings, only: %i[show index] do
       resources :schedules, only: %i[new create]
       resources :availabilities, only: %i[index]
-      resources :bookings, only: %i[show]
+      resources :bookings, only: %i[show index]
       member do
         get "/calendar" => "listings#calendar"
       end

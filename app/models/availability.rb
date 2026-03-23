@@ -8,6 +8,7 @@ class Availability < ApplicationRecord
   validate :end_time_after_start_time
 
   scope :upcoming_bookings, -> { where("start_time >= ?", Time.current).booked }
+  scope :grouped_bookings_by_day, -> { booked.includes(:booking).order(start_time: :asc).group_by_day(&:start_time) }
 
   def display_for_tenant
     "#{start_time.strftime("%B %d, %Y %H:%M")} - #{end_time.strftime("%H:%M")}"

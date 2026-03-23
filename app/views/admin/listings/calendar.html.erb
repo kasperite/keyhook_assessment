@@ -1,4 +1,4 @@
-<div class="p-4 border bg-light mx-auto">
+<div class="p-4 border bg-light w-75 mx-auto">
   <h1><%= @listing.address %></h1>
   <%= month_calendar(events: @availabilities) do |date, availabilities| %>
     <%= turbo_frame_tag "date_#{date.to_time.to_i}" do %>

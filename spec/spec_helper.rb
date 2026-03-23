@@ -35,11 +35,14 @@ end
 Capybara.default_driver = :remote_chrome
 Capybara.javascript_driver = :remote_chrome
 
-Capybara.app_host = 'http://web:3010'
-Capybara.server_host = '0.0.0.0'
-Capybara.server_port = 3010
-
 RSpec.configure do |config|
+  config.before(:each, type: :system) do
+    driven_by :remote_chrome
+
+    Capybara.app_host = 'http://web:3010'
+    Capybara.server_host = '0.0.0.0'
+    Capybara.server_port = 3010
+  end
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
   # assertions if you prefer.

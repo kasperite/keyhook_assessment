@@ -1,5 +1,5 @@
 <li>
-  <span class="badge rounded-pill bg-primary">
+  <span class="badge <%= availability.booked? ? 'bg-secondary' : 'bg-success' %>">
     <%= display_timeslot(availability) %>
   </span>
 </li>

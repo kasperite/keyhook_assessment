@@ -1,10 +1,11 @@
 <%= render "shared/modal", title: @date.strftime("%d/%m/%Y"), fade_in: true do %>
-  <h1>Confirmed Viewing</h1>
+  <h2 class="bg-secondary text-white p-2">Confirmed Viewing</h2>
+  <p><strong>Address:</strong> <%= @booking.listing.address %></p>
   <p><strong>Time:</strong> <%= display_timeslot(@booking.availability) %></p>
   <p><strong>Full name:</strong> <%= @booking.full_name %></p>
   <p><strong>Mobile:</strong> <%= @booking.mobile %></p>
   <p><strong>Email:</strong> <%= @booking.email %></p>
   <p><strong>Message:</strong> <%= @booking.message %></p>
   <p><strong>Over 18:</strong> <%= @booking.over_eighteen ? "Yes" : "No" %></p>
-  <%= link_to "Back", admin_user_availabilities_path(Current.user, date: @date), class: "btn btn-secondary", data: { turbo_frame: "modal" } %>
+  <%= link_to "Back", admin_listing_availabilities_path(@booking.listing.id, date: @date), class: "btn btn-secondary", data: { turbo_frame: "modal" } %>
 <% end %>

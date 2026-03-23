@@ -1,5 +1,6 @@
 class Booking < ApplicationRecord
   belongs_to :availability
+  delegate :listing, to: :availability
 
   validates :email, presence: true, format: { with: URI::MailTo::EMAIL_REGEXP }
   validates :first_name, :last_name, :mobile, presence: true

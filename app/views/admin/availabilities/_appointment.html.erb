@@ -1,3 +1,3 @@
 <li class="mb-2">
-  <%= link_to display_timeslot(appointment), admin_user_booking_path(@user, appointment.booking, date: date), class: "btn btn-sm btn-outline-success", data: { turbo_frame: "modal" } %>
+  <%= link_to display_timeslot(appointment), admin_listing_booking_path(appointment.listing_id, appointment.booking, date: date), class: "btn btn-sm btn-outline-success", data: { turbo_frame: "modal" } %>
 </li>

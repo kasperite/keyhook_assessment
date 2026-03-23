@@ -1,13 +1,12 @@
-<div class="p-4 border bg-light w-50 mx-auto">
-  <h1>Admin Dashboard</h1>
-  <p><%= button_to "Sign Out", session_path, method: :delete, class: "btn btn-danger" %></p>
+<div class="p-4 border bg-light mx-auto">
+  <h1><%= @listing.address %></h1>
   <%= month_calendar(events: @availabilities) do |date, availabilities| %>
     <%= turbo_frame_tag "date_#{date.to_time.to_i}" do %>
-      <%= link_to admin_user_availabilities_path(Current.user, date: date), data: { turbo_frame: "modal" }, class: "btn btn-sm #{availabilities.any? ? 'btn-primary' : 'btn-outline-secondary'} position-relative" do %>
+      <%= link_to admin_listing_availabilities_path(@listing, date: date), data: { turbo_frame: "modal" }, class: "btn btn-sm #{availabilities.any? ? 'btn-primary' : 'btn-outline-secondary'} position-relative" do %>
         <%= date.day %>
 
         <% count = availabilities.select { |a| a.status == "booked" }.count %>
-        <% if count > 0 %>
+        <% if count > 0 && date >= Date.current %>
           <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
             <%= count %>
           </span>
@@ -15,4 +14,5 @@
       <% end %>
     <% end %>
   <% end %>
+  <%= link_to "Back", admin_listings_path, class: "btn btn-secondary" %>
 </div>

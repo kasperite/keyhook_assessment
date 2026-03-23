@@ -1,14 +1,12 @@
 class Admin::SchedulesController < Admin::BaseController
-  before_action :find_user
-
   def new
-    @schedule = Schedule::OneOff.new(user_id: @user.id, start_time: params[:date], duration: nil)
+    @schedule = Schedule::OneOff.new(listing_id: params[:listing_id], start_time: params[:date])
     turbo_stream
   end
 
   def create
     params[:schedule].parse_time_select! :start_time 
-    @schedule = Schedule::OneOff.new(user_id: @user.id, start_time: schedule_params[:start_time], duration: schedule_params[:duration].to_i)
+    @schedule = Schedule::OneOff.new(schedule_params)
     
     if @schedule.valid?
       @availability = @schedule.create
@@ -19,10 +17,6 @@ class Admin::SchedulesController < Admin::BaseController
   end
 
   def schedule_params
-    params.require(:schedule).permit(:start_time, :duration)
-  end
-
-  def find_user
-    @user = User.find(params[:user_id])
+    params.require(:schedule).permit(:start_time, :duration, :listing_id)
   end
 end

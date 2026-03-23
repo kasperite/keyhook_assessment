@@ -2,28 +2,30 @@
   <div class="container">
     <div class="row">
       <div class="col-6">
-        <h2>Confirmed</h2>
+        <h2 class="bg-secondary text-white p-2">Confirmed</h2>
         <div class="mb-3">
           <ul id="appointments" class="list-unstyled">
             <% if @appointments.empty? %>
               <p>No confirmed appointments.</p>
             <% end %>
-            <% @appointments.each do |appointment| %>
-              <%= render "appointment", appointment: appointment, date: @date %>
-            <% end %>
+            <ul class="list-unstyled">
+              <% @appointments.each do |appointment| %>
+                <%= render "appointment", appointment: appointment, date: @date %>
+              <% end %>
+            </ul>
           </ul>
         </div>
       </div>
       <div class="col-6">
-        <h2>Availabilities</h2>
+        <h2 class="bg-secondary text-white p-2">Availabilities</h2>
         <div>
-          <ul id="availabilities" class="list-unstyled">
+          <ul id="<%= dom_id(@listing) %>" class="list-unstyled">
             <%= render @availabilities %>
           </ul>
         </div>
         <% unless @date < Date.current %>
           <%= turbo_frame_tag 'new_availability' do %>
-            <%= link_to "Add", new_admin_user_schedule_path(Current.user, date: @date), class: "btn btn-sm btn-primary", data: { turbo_stream: true } %>
+            <%= link_to "Add", new_admin_listing_schedule_path(@listing, date: @date), class: "btn btn-sm btn-primary", data: { turbo_stream: true } %>
           <% end %>
         <% end %>
       </div>

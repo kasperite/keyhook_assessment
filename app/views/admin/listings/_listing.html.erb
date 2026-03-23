@@ -1,0 +1,13 @@
+<div class="row mb-3">
+  <div class="col-4">
+    <%= image_tag listing.photo, class: "img-thumbnail" %>
+  </div>
+  <div class="col-8">
+    <h3><%= listing.title %></h3>
+    <p><%= listing.description %></p>
+    <% if bookings = listing.availabilities.upcoming_bookings.presence  %>
+      <p class="badge bg-success"><%= pluralize(bookings.count, "upcoming booking") %></p><br/>
+    <% end %>
+    <%= link_to "View Calendar", calendar_admin_listing_path(listing), class: "btn btn-sm btn-primary" %>
+  </div>
+</div>

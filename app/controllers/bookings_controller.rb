@@ -1,6 +1,6 @@
 class BookingsController < ApplicationController
   def new
-    @availabilities = Availability.available.where("start_time >= ?", Time.current)
+    @availabilities = Availability.available.where("start_time >= ? AND listing_id = ?", Time.current, params[:listing_id])
     @booking = Booking.new
   end
 
@@ -10,7 +10,7 @@ class BookingsController < ApplicationController
     if @booking.save
       redirect_to root_path, notice: 'Booking was successfully created.'
     else
-      @availabilities = Availability.available.where("start_time >= ?", Time.current)
+      @availabilities = Availability.available.where("start_time >= ? AND listing_id = ?", Time.current, params[:listing_id])
       render :new, status: :unprocessable_entity
     end
   end

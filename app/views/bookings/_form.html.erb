@@ -1,9 +1,10 @@
-<%= form_with model: @booking, url: bookings_path, data: { turbo: "false" } do |f| %>
+<%= form_with model: @booking, url: listing_bookings_path(@booking, listing_id: params[:listing_id]), data: { turbo: "false" } do |f| %>
   <% if @booking.errors.any? %>
     <p class="text-danger">
       <%= @booking.errors.full_messages.to_sentence.capitalize %>
     </p>
   <% end %>
+  
   <% if @availabilities.blank? %>
     <p class="text-danger">There are no booking times currently available.</p>
   <% end %>

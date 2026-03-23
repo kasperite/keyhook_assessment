@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Admin::Dashboards", type: :request do
+RSpec.describe "Admin Page", type: :request do
   let(:user) { FactoryBot.create(:user) }
   describe "GET /admin" do
     context "when user is not signed in" do

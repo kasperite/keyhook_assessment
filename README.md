@@ -30,4 +30,7 @@ The application has two separate views, tenant and admin views
   Credentials:
 
   - username: admin@localhost.com
-  - password: Password1234! 
+  - password: Password1234!
+
+See [Solutions](solution.md) for more details
+

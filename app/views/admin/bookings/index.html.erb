@@ -1,0 +1,23 @@
+<div class="p-4 border bg-light w-75 mx-auto">
+  <h2>Confirmed Viewings</h2>
+  <%= @listing.address %>
+  <hr/>
+  <% @bookings.each do |day, availabilities| %>
+    <div class="mb-3">
+      <h5 class="text-success"><%= day %></h5>
+      <ul class="list-group">
+        <% availabilities.each do |availability| %>
+          <li class="list-group-item">
+            <p><strong>Time <Slot></Slot></strong>: <%= display_timeslot(availability) %></p>
+            <p><strong>Full Name</strong>: <%= availability.booking.full_name %></p>
+            <p><strong>Email</strong>: <%= availability.booking.email %></p>
+            <p><strong>Mobile</strong>: <%= availability.booking.mobile %></p>
+            <p><strong>Message</strong>: <%= availability.booking.message %></p>
+            <p><strong>Over 18</strong>: <%= availability.booking.over_eighteen ? "yes" : "no" %></p>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= link_to "Back", :back, class: "btn btn-secondary" %>
+</div>

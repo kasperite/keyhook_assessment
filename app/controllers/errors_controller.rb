@@ -1,5 +1,5 @@
 class ErrorsController < ApplicationController
   def not_found
-    render status: :not_found, template: 'errors/not_found', layout: 'application'
+    render file: Rails.public_path.join("404.html"), status: :not_found, layout: false
   end
 end

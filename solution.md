@@ -36,10 +36,24 @@ Scheduling availabilities is handled by a scheduler service which is extended fr
 
 ### Productionisation
 
-A few limitations to consider:
+**Questions to clarify due to ambiguity**
+
+- Can tenant make more than one booking per listing? Currently they can book as many as they want, as long as there are available time slots
+- Time slot duration flexibility. Should it be fixed ie 1 hour instead of letting admin choosing any number at the moment?Also what is its sensible limit?
+
+
+**Improvements to consider**
 
 - User session does not expire. We want it to be expired after certain time, ideally a sliding window timeout so that admin user can continue working without interruption.
 - Move hardcoded operation hours into an app config if it is a global setting.
 - Even though not needed, having background jobs to notify changes are crucial for this type of app. For example, tenant and property manager should receive emails about confirmed viewing respectively.
+
+
+**Other ideas to make the app more useful**
+
+- Ability to cancel or reschedule viewing
+- Booking notification eg sms reminder
+- Allow tenant to inquire for viewings when there are no available time slots, possibly a separate submission form.
+
 
 

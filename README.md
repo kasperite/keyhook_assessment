@@ -1,5 +1,7 @@
 # Property scheduled viewing POC
 
+See [Solution](solution.md) for implementation details
+
 ## Technical Stack
 - Rails 8.1
 - Turbo + Stimulus (for UI interaction)
@@ -25,12 +27,10 @@ $ bin/task spec
 
 The application has two separate views, tenant and admin views
 - Tenant (http://localhost:3000): Tenant can view property and book for viewing
-- Admin (http://localhost:3000/admin): Property manager can schedule viewing and see who confirmed viewing
+- Admin (http://localhost:3000/admin): Property manager can schedule viewings and see who booked viewings
 
   Credentials:
 
   - username: admin@localhost.com
   - password: Password1234!
-
-See [Solutions](solution.md) for more details
 

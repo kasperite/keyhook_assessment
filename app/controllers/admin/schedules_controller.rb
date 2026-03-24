@@ -8,8 +8,7 @@ class Admin::SchedulesController < Admin::BaseController
     params[:schedule].parse_time_select! :start_time 
     @schedule = Schedule::Single.new(schedule_params)
     
-    if @schedule.valid?
-      @availability = @schedule.create
+    if @availability = @schedule.create
       turbo_stream
     else
       render :new, status: :unprocessable_content

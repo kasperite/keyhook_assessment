@@ -26,6 +26,11 @@
   <body>
     <div class="d-flex justify-content-center align-items-center vh-100">
       <div class="p-4 w-75">
+        <% if Current.session&.user %>
+          <div class="mb-2 w-75 mx-auto">
+            <%= link_to "Logout", session_path, data: { turbo_method: :delete }, class: "btn btn-danger btn-sm" %>
+          </div>
+        <% end %>
         <%= turbo_frame_tag "modal" %>
         <%= yield %>
       </div>

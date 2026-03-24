@@ -8,7 +8,8 @@ module Schedule
     attr_accessor :start_time, :duration, :listing_id
 
     validates :start_time, :duration, :listing_id, presence: true
-    validates :duration, numericality: { greater_than_or_equal_to: 30 }
+    validates :start_time, comparison: { greater_than: -> { Time.current }, message: "must be in the future" }
+    validates :duration, numericality: { greater_than_or_equal_to: 30, message: "must be at least 30 minutes" }
     validate :within_operation_hours
 
     def initialize(attributes = {})

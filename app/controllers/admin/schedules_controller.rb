@@ -1,12 +1,12 @@
 class Admin::SchedulesController < Admin::BaseController
   def new
-    @schedule = Schedule::OneOff.new(listing_id: params[:listing_id], start_time: params[:date])
+    @schedule = Schedule::Single.new(listing_id: params[:listing_id], start_time: params[:date])
     turbo_stream
   end
 
   def create
     params[:schedule].parse_time_select! :start_time 
-    @schedule = Schedule::OneOff.new(schedule_params)
+    @schedule = Schedule::Single.new(schedule_params)
     
     if @schedule.valid?
       @availability = @schedule.create

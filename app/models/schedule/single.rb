@@ -1,8 +1,10 @@
 module Schedule
-  class OneOff < Base
+  class Single < Base
     validate :no_overlapping_availabilities
 
     def create
+      return unless valid?
+      
       Availability.create(
         start_time: start_time,
         end_time: start_time + duration.minutes,
